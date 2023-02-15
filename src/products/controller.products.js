@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const ProductManager = require('../manager/product.manager');
-const Product = require('../models/products.model')
+const FilesManager = require('../dao/files.manager');
+const Product = require('../dao/models/products.model')
 
 const router = Router();
-const productsManager = new ProductManager()
+const productsManager = new FilesManager('products.json')
 
 
 router.get('/', async (req,res) =>{
@@ -20,7 +20,7 @@ router.get('/', async (req,res) =>{
 
 router.post('/', async (req,res) =>{
     try{
-        const products = await productsManager.loadProduct()
+        const products = await productsManager.loadItems()
 
         await Product.insertMany(products)
 

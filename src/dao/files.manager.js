@@ -1,10 +1,11 @@
 const fs = require('fs')
 
-class ProductManager {
-    file = `${process.cwd()}/src/files/products.json`
+class FilesManager {
+    constructor (file){
+        this.file = `${process.cwd()}/src/files/${file}`
+    }
     
-    
-    async loadProduct(){
+    async loadItems(){
         if(fs.existsSync(this.file)){
             const data = await fs.promises.readFile(this.file)
             const response = JSON.parse(data)
@@ -16,4 +17,4 @@ class ProductManager {
 }
 
 
-module.exports = ProductManager
+module.exports = FilesManager

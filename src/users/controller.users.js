@@ -1,5 +1,7 @@
-const { Router } = require('express')
-const User = require('../models/users.model')
+const { Router } = require('express');
+const UsersManager = require('../dao/users.manager');
+
+const User = new UsersManager
 
 const router = Router();
 
@@ -39,8 +41,8 @@ router.post('/', async (req,res) =>{
 
 router.delete('/', async (req,res) =>{
     try{
-        await User.deleteMany()
-        res.json({ message: "usuario eliminado" })
+        await User.delete()
+        res.json({ message: "usuarios eliminado" })
 
     } catch(err){
         console.log(err)
